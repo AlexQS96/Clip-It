@@ -1,4 +1,5 @@
-# clip-it
+<img src="./public/img/og_image.webp" width="356px">
+
 Copy your notes quickly
 
 Made with :
