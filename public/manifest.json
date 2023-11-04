@@ -3,10 +3,10 @@
   "background_color": "#000",
   "display": "standalone",
   "orientation": "any",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/clip-it",
+  "start_url": "/clip-it",
   "name": "Clip It",
-  "short_name": "clipit",
+  "short_name": "Clip It",
   "description": "Copy your notes quickly with Clip It.",
   "icons": [
       {
