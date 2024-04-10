@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="font-mono">
 
 <head>
   <meta charset="UTF-8">
@@ -21,6 +21,8 @@
   <link rel="icon" href="public/img/icon-192x192.png">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   <link rel="stylesheet" href="public/global.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
   <title>Clip It</title>
   <script>
     const translateOptions = ["en", "es"];
@@ -45,34 +47,38 @@
   </script>
 </head>
 
-<body onload="loadNotes('clipboard')" class="max-w-screen-xl w-[90%] mx-auto bg-black py-5 h-full">
+<body onload="loadNotes('clipboard')" class="max-w-screen-xl w-[90%] mx-auto bg-neutral-900 py-5 h-full">
   <header class="flex justify-between items-center mb-5">
-    <h1 class="font-bold text-white text-3xl font-mono">Clip It</h1>
+    <h1 class="font-bold text-white -tracking-wider">Clip It</h1>
 
     <select aria-label="Language | Idioma" aria-describedby="Language | Idioma" id="multipleTranslation"
-      class="focus-within:border-white/50 outline-none select-none cursor-pointer bg-transparent border rounded-md text-white py-1 px-3 border-white/30 font-mono">
+      class="focus-within:border-white/50 outline-none select-none cursor-pointer bg-transparent border rounded-md text-white py-1 px-3 border-white/30 text-sm">
       <option value="en" class="bg-black text-white hover:bg-white hover:text-black">English</option>
       <option value="es" class="bg-black text-white hover:bg-white hover:text-black">Español</option>
     </select>
   </header>
 
-  <form class="flex flex-col gap-2" onsubmit="event.preventDefault(); createNote(this);">
+  <small class="text-white mb-3 block" data-en="Click on any note to copy its content."
+    data-es="Clickea en cualquier nota para copiar su contenido.">Click on any note to copy its content.</small>
+
+  <form class="flex flex-col gap-3" onsubmit="event.preventDefault(); createNote(this);">
     <textarea aria-label="Crear Nota | Create Note" name="note"
-      class="resize-none h-[128px] w-full bg-white/10 p-3 text-white outline-none border border-white/30 rounded-lg focus-within:border-white/50"></textarea>
+      class="resize-none h-44 w-full bg-white/5 p-3 text-white outline-none border border-white/20 rounded-lg focus-within:border-white/50"></textarea>
     <div class="flex items-center justify-between">
-      <button type="submit" class="active:scale-95 bg-white py-1 px-3 rounded-md w-fit font-medium font-mono"
-        data-en="Save" data-es="Guardar">Save</button>
+      <button type="submit"
+        class="active:scale-95 bg-green-500 text-white py-1 px-3 rounded-md w-fit font-medium font-mono" data-en="Save"
+        data-es="Guardar">Save</button>
 
       <button id="deleteOn" onclick="loadDeleteMode(true)" type="button"
         class="active:scale-95 bg-red-800 text-white py-1 px-3 rounded-md w-fit font-medium font-mono"
-        data-en="Delete a note" data-es="Borrar una nota">Delete a note</button>
+        data-en="Delete mode" data-es="Modo de eliminación">Delete mode</button>
       <button id="deleteOff" onclick="loadDeleteMode(false)" type="button"
         class="hidden active:scale-95 bg-red-800 text-white py-1 px-3 rounded-md w-fit font-medium font-mono"
         data-en="Close" data-es="Cerrar">Close</button>
     </div>
   </form>
 
-  <section id="notes" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-10 mt-10">
+  <section id="notes" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5 mt-10">
   </section>
 
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
