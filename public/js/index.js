@@ -1,6 +1,7 @@
 let items = localStorage?.notes ? JSON.parse(localStorage?.notes) : [];
 
 const container = document.querySelector("#notes");
+var isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
 new Sortable(container, {
   animation: 150,
@@ -12,6 +13,7 @@ new Sortable(container, {
       localStorage.setItem("notes", JSON.stringify(items));
     }
   },
+  forceFallback: isFirefox
 });
 
 function clipboard(e) {
